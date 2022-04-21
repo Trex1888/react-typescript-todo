@@ -1,9 +1,15 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import React from "react";
+import { render, screen, fireEvent } from "@testing-library/react";
+import App from "./App";
 
-test('renders learn react link', () => {
+it("should work", async () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const input = await screen.findByRole("textbox", {
+    name: "task",
+  });
+  fireEvent.input(input, { target: { value: "Hello" } });
+  const input1 = await screen.findByRole("textbox", {
+    name: "deadline",
+  });
+  fireEvent.input(input1, { target: { value: "2" } });
 });
